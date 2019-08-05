@@ -16,14 +16,14 @@
     *ngIf="selectedUser"
     [user]="selectedUser$ | async"
     [projects]="userProjects$ | async"
-    [customers]="userCustomers$ | async"
+    [tracks]="userTracks$ | async"
     [userProjectsLoading]="userProjectsLoading$ | async"
-    [userCustomersLoading]="userCustomersLoading$ | async"
+    [userTracksLoading]="userTracksLoading$ | async"
     (detailsClosed)="onDetailsClose()"
     (projectsLoad)="onProjectsLoad()"
-    (customersLoad)="onCustomersLoad()"
+    (tracksLoad)="onTracksLoad()"
     (projectDeleted)="onProjectDelete($event)"
-    (customerDeleted)="onCustomerDelete($event)"
+    (trackDeleted)="onTrackDelete($event)"
     (addAdmin)="addAdminPrivileges($event)"
     (removeAdmin)="removeAdminPrivileges($event)"></app-user-detail>
 </div>

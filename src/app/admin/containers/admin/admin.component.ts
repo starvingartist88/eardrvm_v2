@@ -10,15 +10,15 @@ import {
   getSelectedUser,
   getUsersListLoading,
   getUserProjectsLoading,
-  getUserCustomers,
-  getUserCustomersLoading
+  getUserTracks,
+  getUserTracksLoading
 } from '../../store/admin.selectors';
 import { Project } from '../../../projects/models/project.model';
 import { User } from '../../../auth/models/user.model';
 import { map, delay, take } from 'rxjs/operators';
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
-import { Customer } from '../../../customers/models/customer.model';
+import { Track } from '../../../tracks/models/track.model';
 
 @Component({
   selector: 'app-admin',
@@ -33,10 +33,10 @@ export class AdminComponent implements OnInit {
 
   users$: Observable<any>;
   userProjects$: Observable<Project[]>;
-  userCustomers$: Observable<Customer[]>;
+  userTracks$: Observable<Track[]>;
   usersListLoading$: Observable<boolean>;
   userProjectsLoading$: Observable<boolean>;
-  userCustomersLoading$: Observable<boolean>;
+  userTracksLoading$: Observable<boolean>;
   selectedUser$: Observable<any>;
   selectedUser: any;
   uid: any;
@@ -60,7 +60,7 @@ export class AdminComponent implements OnInit {
     );
     this.usersListLoading$ = this.store.select(getUsersListLoading);
     this.userProjectsLoading$ = this.store.select(getUserProjectsLoading);
-    this.userCustomersLoading$ = this.store.select(getUserCustomersLoading);
+    this.userTracksLoading$ = this.store.select(getUserTracksLoading);
   }
 
   onUserSelect(user: any) {
@@ -77,10 +77,10 @@ export class AdminComponent implements OnInit {
       })
     );
 
-    this.userCustomers$ = this.store.select(getUserCustomers, user.uid).pipe(
-      map(customers => {
-        if (customers && customers.length !== 0) {
-          return customers;
+    this.userTracks$ = this.store.select(getUserTracks, user.uid).pipe(
+      map(tracks => {
+        if (tracks && tracks.length !== 0) {
+          return tracks;
         } else {
           return null;
         }
@@ -92,8 +92,8 @@ export class AdminComponent implements OnInit {
     this.store.dispatch(new fromAdmin.GetUserProjects({ uid: this.uid }));
   }
 
-  onCustomersLoad() {
-    this.store.dispatch(new fromAdmin.GetUserCustomers({ uid: this.uid }));
+  onTracksLoad() {
+    this.store.dispatch(new fromAdmin.GetUserTracks({ uid: this.uid }));
   }
 
   onDetailsClose() {
@@ -120,7 +120,7 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  openCustomerConfirmModal(customer: Customer) {
+  openTrackConfirmModal(track: Track) {
     this.modalRef = this.modalService.show(
       ConfirmModalComponent,
       this.modalConfig
@@ -131,17 +131,17 @@ export class AdminComponent implements OnInit {
       .subscribe((confirmation: boolean) => {
         if (confirmation) {
           this.store.dispatch(
-            new fromAdmin.DeleteUserCustomer({
+            new fromAdmin.DeleteUserTrack({
               userId: this.selectedUser.key,
-              customerId: customer.key
+              trackId: track.key
             })
           );
         }
       });
   }
 
-  onCustomerDelete(customer: Customer) {
-    this.openCustomerConfirmModal(customer);
+  onTrackDelete(track: Track) {
+    this.openTrackConfirmModal(track);
   }
 
   onProjectDelete(project: Project) {

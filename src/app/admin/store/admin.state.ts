@@ -5,8 +5,8 @@ export interface AdminState {
     usersListLoading: boolean;
     userProjects: any;
     userProjectsLoading: boolean;
-    userCustomers: any;
-    userCustomersLoading: boolean;
+    userTracks: any;
+    userTracksLoading: boolean;
     error: any;
 }
 
@@ -15,7 +15,7 @@ export const adminInitialState: AdminState = {
     usersListLoading: false,
     userProjects: {},
     userProjectsLoading: false,
-    userCustomers: {},
-    userCustomersLoading: false,
+    userTracks: {},
+    userTracksLoading: false,
     error: null
 };

@@ -511,7 +511,7 @@ Added two demo applications to ready-to-use archives containing MDB Angular Free
 
 *** Fixes: ***
 
-    * Fixed a problem with the inability to update the charts labels together with the data,
+    * Fixed a problem with the inability to update the tracks labels together with the data,
     * Resolved problem with only 1 image in Lightbox Component,
     * Fixed problem with undefined calls after (ngModelChange) in Material Select component,
     * Collapse directive won't throw undefined calls after emitting events,
@@ -529,7 +529,7 @@ Added two demo applications to ready-to-use archives containing MDB Angular Free
     * Described how to open collapse after view init,
     * Integration with ASP.NET Core moved from 5min-quickstart page to separate ASP.NET page,
     * On Multiselect page added description how to add initial value to it and how to get value changes,
-    * Described how to update charts appearance dynamically.
+    * Described how to update tracks appearance dynamically.
 
 6.1.6
 *** Fixes: ***
@@ -595,10 +595,9 @@ In 6.1.1 we have made it possible to import only those modules that you actually
 If only individual modules are used, import them but do not import the MDBBootstrapModulesPro main module as this may cause errors.
 
 *** What's new: ***
-    Source code delivered to customers is now compilated to .js instead of .ts,
+    Source code delivered to tracks is now compilated to .js instead of .ts,
     There's now possibility to import only those modules, which you need in your project. Full module list: https://mdbootstrap.com/angular/modules-list
     Changed names of few modules:
-        * MDBChartsModule -> ChartsModule,
         * BsDropdownModule -> DropdownModule,
         * MDBTooltipModule -> TooltipModule,
         * SqueezeBoxModule -> AccordionModule,

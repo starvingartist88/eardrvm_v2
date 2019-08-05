@@ -22,9 +22,9 @@ export class AdminService {
     return projectsRef.snapshotChanges();
   }
 
-  getUserCustomers(uid: string) {
-    const customersRef = this.db.list('customers/' + uid);
-    return customersRef.snapshotChanges();
+  getUserTracks(uid: string) {
+    const tracksRef = this.db.list('tracks/' + uid);
+    return tracksRef.snapshotChanges();
   }
 
   checkAdminRole(uid: string) {
@@ -35,8 +35,8 @@ export class AdminService {
     return from(this.db.object(`projects/${uid}/` + projectId).remove());
   }
 
-  deleteUserCustomer(uid: string, customerId: string) {
-    return from(this.db.object(`customers/${uid}/` + customerId).remove());
+  deleteUserTrack(uid: string, trackId: string) {
+    return from(this.db.object(`tracks/${uid}/` + trackId).remove());
   }
 
   addAdminPrivileges(uid: string) {

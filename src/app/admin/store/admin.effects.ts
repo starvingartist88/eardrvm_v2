@@ -6,7 +6,7 @@ import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { AdminService } from '../services/admin.service';
 import { Project } from '../../projects/models/project.model';
 import { of } from 'rxjs';
-import { Customer } from '../../customers/models/customer.model';
+import { Track } from '../../tracks/models/track.model';
 
 
 @Injectable()
@@ -78,23 +78,23 @@ export class AdminEffects {
   );
 
   @Effect()
-  getUserCustomers$ = this.actions$.pipe(
-    ofType(fromAdmin.AdminActionTypes.GET_USER_CUSTOMERS),
-    map((action: fromAdmin.GetUserCustomers) => action.payload),
-    mergeMap( (payload: any) => this.adminService.getUserCustomers(payload.uid)
+  getUserTrack$ = this.actions$.pipe(
+    ofType(fromAdmin.AdminActionTypes.GET_USER_TRACKS),
+    map((action: fromAdmin.GetUserTracks) => action.payload),
+    mergeMap( (payload: any) => this.adminService.getUserTracks(payload.uid)
       .pipe(
         map((data: any) => {
-          const customersData: Customer[] = data.map((res: any) => {
+          const tracksData: Track[] = data.map((res: any) => {
             const key = res.payload.key;
-            const customer: Customer = res.payload.val();
+            const track: Track = res.payload.val();
             return {
               key: key,
-              id: customer.id,
-              name: customer.name,
-              description: customer.description
+              id: track.id,
+              name: track.name,
+              description: track.description
             };
           });
-          return (new fromAdmin.UserCustomersLoaded({ uid: payload.uid, userCustomers: customersData }));
+          return (new fromAdmin.UserTracksLoaded({ uid: payload.uid, userTracks: tracksData }));
         }),
         catchError(error => of(new fromAdmin.AdminError({ error })))
       )
@@ -102,10 +102,10 @@ export class AdminEffects {
   );
 
   @Effect({ dispatch: false })
-  deleteUserCustomer$ = this.actions$.pipe(
-    ofType(fromAdmin.AdminActionTypes.DELETE_USER_CUSTOMER),
-    map( (action: fromAdmin.DeleteUserCustomer) => action.payload),
-    switchMap( (payload: any) => this.adminService.deleteUserCustomer(payload.userId, payload.customerId)
+  deleteUserTrack$ = this.actions$.pipe(
+    ofType(fromAdmin.AdminActionTypes.DELETE_USER_TRACKS),
+    map( (action: fromAdmin.DeleteUserTrack) => action.payload),
+    switchMap( (payload: any) => this.adminService.deleteUserTrack(payload.userId, payload.trackId)
       .pipe(
         catchError( (error: any) => of(new fromAdmin.AdminError({ error })))
       )

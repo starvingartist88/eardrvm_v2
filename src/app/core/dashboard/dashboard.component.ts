@@ -3,10 +3,10 @@ import { Subscription, empty } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../reducers/index';
 import { ProjectsService } from '../../projects/services/projects.service';
-import { CustomersService } from '../../customers/services/customers.service';
+import { TracksService } from '../../tracks/services/tracks.service';
 import { getUser } from '../../auth/store/auth.selectors';
 import { switchMap, take } from 'rxjs/operators';
-import { Customer } from '../../customers/models/customer.model';
+import { Track } from '../../tracks/models/track.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -42,31 +42,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   ];
 
-  customersSub: Subscription;
-  customers: Customer[] = [
+  tracksSub: Subscription;
+  tracks: Track[] = [
     {
       id: 1,
-      name: 'Example customer 1',
+      name: 'Example track 1',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
     },
     {
       id: 2,
-      name: 'Example customer 2',
+      name: 'Example track 2',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
     },
     {
       id: 3,
-      name: 'Example customer 3',
+      name: 'Example track 3',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
     },
     {
       id: 4,
-      name: 'Example customer 4',
+      name: 'Example track 4',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
     },
     {
       id: 5,
-      name: 'Example customer 5',
+      name: 'Example track 5',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
     }
   ];
@@ -74,12 +74,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private projectsService: ProjectsService,
-    private customersService: CustomersService
+    private tracksService: TracksService
   ) {}
 
   ngOnInit() {
     this.initProjects();
-    this.initCustomers();
+    this.initTracks();
   }
 
   ngOnDestroy() {
@@ -87,8 +87,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.projectsSub.unsubscribe();
     }
 
-    if (this.customersSub) {
-      this.customersSub.unsubscribe();
+    if (this.tracksSub) {
+      this.tracksSub.unsubscribe();
     }
   }
 
@@ -112,22 +112,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  initCustomers() {
-    this.customersSub = this.store
+  initTracks() {
+    this.tracksSub = this.store
       .pipe(
         select(getUser),
         switchMap((user: any) => {
           if (user) {
-            return this.customersService.get(user.uid);
+            return this.tracksService.get(user.uid);
           } else {
             return empty();
           }
         }),
         take(1)
       )
-      .subscribe(customers => {
-        if (customers.length === 0) {
-          this.customersService.addCustomers(this.customers);
+      .subscribe(tracks => {
+        if (tracks.length === 0) {
+          this.tracksService.addTracks(this.tracks);
         }
       });
   }

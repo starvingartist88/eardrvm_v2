@@ -29,11 +29,11 @@ export const getUserProjects = createSelector(
   }
 );
 
-export const getUserCustomers = createSelector(
+export const getUserTracks = createSelector(
   getAdminState,
   (admin: any, uid: string) => {
-    if (admin.userCustomers.hasOwnProperty(uid)) {
-      return admin.userCustomers[uid];
+    if (admin.userTracks.hasOwnProperty(uid)) {
+      return admin.userTracks[uid];
     } else {
       return null;
     }
@@ -45,7 +45,7 @@ export const getUserProjectsLoading = createSelector(
   admin => admin.userProjectsLoading
 );
 
-export const getUserCustomersLoading = createSelector(
+export const getUserTracksLoading = createSelector(
   getAdminState,
-  admin => admin.userCustomersLoading
+  admin => admin.userTracksLoading
 );

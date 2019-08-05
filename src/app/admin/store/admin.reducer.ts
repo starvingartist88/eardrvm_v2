@@ -30,16 +30,16 @@ export function adminReducer(state = adminInitialState, action: AdminActions): A
       });
     }
 
-    case AdminActionTypes.GET_USER_CUSTOMERS: {
+    case AdminActionTypes.GET_USER_TRACKS: {
       return Object.assign({}, state, {
-        userCustomersLoading: true
+        userTracksLoading: true
       });
     }
 
-    case AdminActionTypes.USERS_CUSTOMERS_LOADED: {
+    case AdminActionTypes.USERS_TRACKS_LOADED: {
       return Object.assign({}, state, {
-        userCustomers: {...state.userCustomers, [action.payload.uid]: action.payload.userCustomers},
-        userCustomersLoading: false
+        userTracks: {...state.userTracks, [action.payload.uid]: action.payload.userTracks},
+        userTracksLoading: false
       });
     }
 
