@@ -31,8 +31,7 @@ export class TracksModalComponent implements OnInit {
         const file: File = fileList[0];
         this.myFire.uploadFile(file)
           .then(_data => {
-            // @ts-ignore
-            this._notifier.display('success', 'Track Successfully Uploaded'!)
+            this._notifier.display('success', 'Track Successfully Uploaded. Please Save!'!)
           }); 
       }
     }
