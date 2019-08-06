@@ -47,7 +47,7 @@
           <img *ngIf="user.photoUrl" src="{{ user.photoUrl }}" height="35" width="35" class="rounded-circle z-depth-0" alt="avatar image">
         </a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">
-              <div *ngIf="user.displayName" class="text-center py-2 px-2">{{ user.displayName }}</div>
+             <a style="color:purple" routerLink="/profile"><div *ngIf="user.displayName" class="text-center py-2 px-2">{{ user.displayName }}</div></a> 
               <div *ngIf="!user.displayName" class="text-center py-2 px-2">Anonymous user</div>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item text-center waves-light" mdbWavesEffect (click)="onLogout(); navbar.hide()">Logout</a>

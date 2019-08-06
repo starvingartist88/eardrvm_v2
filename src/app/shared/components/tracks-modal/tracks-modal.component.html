@@ -8,8 +8,15 @@
   <div class="modal-body">
     <form #trackForm="ngForm">
       <div class="md-form">
-        <input type="text" id="id" name="id" class="form-control" [(ngModel)]="track.id" mdbInput mdbValidate [validateSuccess]="false" #id="ngModel" required>
-        <label for="id">Id</label>
+        
+        
+                <input type="file" (change)="onFileSelection($event)" placeholder="Upload a file" accept=".png, .jpeg, .jpg">
+            
+
+    
+
+
+
         <mdb-error *ngIf="id && id.invalid && (id.dirty || id.touched)">Id is required</mdb-error>
       </div>
 
@@ -29,6 +36,6 @@
   <div class="modal-footer">
     <button type="button" mdbBtn color="white" class="black-text waves-light" aria-label="Close" (click)="modalRef.hide()"
       mdbWavesEffect>Close</button>
-    <button type="button" mdbBtn color="red" class="relative waves-light" mdbWavesEffect (click)="onSave()">Save</button>
+    <button type="button" mdbBtn color="purple" class="relative waves-light" mdbWavesEffect (click)="onSave()">Save</button>
   </div>
 </div>

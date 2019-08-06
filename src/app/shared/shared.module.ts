@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 import { TracksListComponent } from './components/tracks-list/tracks-list.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TracksListComponent } from './components/tracks-list/tracks-list.compon
     ProjectModalComponent,
     ProjectsListComponent,
     ProjectComponent,
-    TracksListComponent
+    TracksListComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,

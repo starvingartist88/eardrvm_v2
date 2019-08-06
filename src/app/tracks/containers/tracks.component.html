@@ -5,7 +5,7 @@
 
 <div class="container-fluid pt-5 pb-5">
   <div class="pt-3 pb-5">
-    <button mdbBtn color="primary" (click)="onAddTrack()">Upload New Track</button>
+    <button mdbBtn color="purple" (click)="onAddTrack()">Upload New Track</button>
 
     <div *ngIf="tracks" class="mt-4 white">
       <app-tracks-list [tracks]="tracks" (trackEdited)="onTrackEdit($event)" (trackDeleted)="onTrackDelete($event)"></app-tracks-list>

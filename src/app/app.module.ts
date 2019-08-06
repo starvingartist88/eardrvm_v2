@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 
+
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
@@ -19,11 +20,16 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
 import { ModalModule } from 'angular-bootstrap-md';
+import { MyFireService } from './shared/myfire.service';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationService } from './notification/notification.service';
+import { UserService } from './shared/user.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,7 @@ import { ModalModule } from 'angular-bootstrap-md';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([])
   ],
+  providers: [MyFireService, NotificationService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

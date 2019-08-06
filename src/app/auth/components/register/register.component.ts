@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
         map( (error: any) => {
           if (error) {
             if (error.code === 'auth/weak-password') {
-              return error.message;
             } else if (error.code === 'auth/email-already-in-use') {
               return 'User with this email address already exist';
             }
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
     if (this.registerForm.valid) {
-      this.store.dispatch(new actions.RegisterRequested({ username, email, password }));
+      this.store.dispatch(new actions.RegisterRequested({ username, email, password }))
     }
   }
 
