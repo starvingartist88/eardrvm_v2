@@ -24,12 +24,20 @@ import { MyFireService } from './shared/myfire.service';
 import { NotificationComponent } from './notification/notification.component';
 import { NotificationService } from './notification/notification.service';
 import { UserService } from './shared/user.service';
+import { MyPostsComponent } from './my-posts/my-posts.component';
+import { AllPostsComponent } from './all-posts/all-posts.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { FollowingComponent } from './following/following.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotificationComponent
+    NotificationComponent,
+    MyPostsComponent,
+    AllPostsComponent,
+    FavoritesComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,
