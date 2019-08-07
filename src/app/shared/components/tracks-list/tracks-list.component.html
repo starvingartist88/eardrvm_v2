@@ -2,27 +2,23 @@
   <table class="table table-striped table-responsive-md btn-table" mdbTable borderless="true">
     <thead style="background-color: transparent">
       <tr>
-        <th>Id</th>
+        <th></th>
+        <th></th>
         <th>Name</th>
         <th>Description</th>
-        <th>image</th>
+        <th>Album Art</th>
         <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
       <tr *ngFor="let track of tracks; trackBy: trackByFn">
-        <th scope="row">{{ track.id }}</th>
+        <th scope="row">Audio</th>
+        <td><audio controls src="{{ track.audioUrl }}"></audio></td>
         <td>{{ track.name }}</td>
         <td>{{ track.description }}</td>
-        <td><img src="{{ track.imageUrl }}"/></td>
-        <td>
-            <div class="image-container">
-              <app-post *ngFor="let post of postLists"
-                        [imageName]="post.data.name"
-                        [displayPostedBy]="false">
-              </app-post></div>
-            </td>
+        <td><img class="image-container" src="{{ track.imageUrl }}"/></td>
+        
         <td>
           <a (click)="onEdit(track)" class="mr-2"><mdb-icon fas icon="edit"></mdb-icon></a>
           <a (click)="onDelete(track)"><mdb-icon fas icon="trash"></mdb-icon></a>

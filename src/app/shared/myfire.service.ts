@@ -45,6 +45,7 @@ export class MyFireService {
     });
 }
 
+
     handleImageUpload(data) {
 
         const user = this.user.getProfile();

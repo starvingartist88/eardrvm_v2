@@ -34,6 +34,21 @@ export class TracksModalComponent implements OnInit {
             this._notifier.display('success', 'Track Successfully Uploaded. Please Save!'!)
           }); 
       }
+      
+    }
+
+    onFileSelection2(event) {
+      const fileList: FileList = event.target.files;
+
+      if (fileList.length > 0) {
+        const file: File = fileList[0];
+        this.myFire.uploadFile(file)
+          .then(({fileUrl})=> {
+            this.track.audioUrl = fileUrl
+            this._notifier.display('success', 'Track Successfully Uploaded. Please Save!'!)
+          }); 
+      }
+      
     }
 
   

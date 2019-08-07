@@ -4,4 +4,5 @@ export interface Track {
     name?: string;
     description?: string;
     imageUrl?: string;
+    audioUrl?: string;
 }
