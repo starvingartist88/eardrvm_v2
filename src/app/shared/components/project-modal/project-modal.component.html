@@ -20,8 +20,16 @@
       </div>
 
       <div class="md-form">
-        <input type="text" id="photo" class="form-control" name="photoUrl" [(ngModel)]="project.photoUrl" mdbInput>
-        <label for="photo">Photo URL</label>
+        <input type="text" id="audio" class="form-control" name="audioUrl" [(ngModel)]="project.audioUrl" mdbInput>
+        <label for="audio">Upload MP3</label>
+        <input type="file" (change)="onFileSelection2($event)" placeholder="Upload a file" accept=".mp3, .wav" class="file-input">
+      </div>
+
+      <div class="md-form">
+        <input type="text" id="photo" class="form-control" name="imageUrl" [(ngModel)]="project.imageUrl" mdbInput>
+        <label for="image">Upload Image</label>
+        <input type="file" (change)="onFileSelection($event)" placeholder="Upload a file" accept=".png, .jpeg, .jpg" class="file-input">
+
       </div>
     </form>
   </div>
