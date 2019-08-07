@@ -15,6 +15,13 @@
         <td>{{ track.name }}</td>
         <td>{{ track.description }}</td>
         <td>
+            <div class="image-container">
+              <app-post *ngFor="let post of postLists"
+                        [imageName]="post.data.name"
+                        [displayPostedBy]="false">
+              </app-post></div>
+            </td>
+        <td>
           <a (click)="onEdit(track)" class="mr-2"><mdb-icon fas icon="edit"></mdb-icon></a>
           <a (click)="onDelete(track)"><mdb-icon fas icon="trash"></mdb-icon></a>
         </td>
