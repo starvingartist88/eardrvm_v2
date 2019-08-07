@@ -17,7 +17,6 @@ export class TracksModalComponent implements OnInit {
 
   heading: string;
   track: Track = {};
-
   trackData: Subject<Track> = new Subject();
 
  constructor(public modalRef: MDBModalRef, private myFire: MyFireService, private _notifier: NotificationService) { }
@@ -30,7 +29,8 @@ export class TracksModalComponent implements OnInit {
       if (fileList.length > 0) {
         const file: File = fileList[0];
         this.myFire.uploadFile(file)
-          .then(_data => {
+          .then(({fileUrl})=> {
+            this.track.imageUrl = fileUrl
             this._notifier.display('success', 'Track Successfully Uploaded. Please Save!'!)
           }); 
       }

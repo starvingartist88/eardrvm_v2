@@ -5,6 +5,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Description</th>
+        <th>image</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -14,6 +15,7 @@
         <th scope="row">{{ track.id }}</th>
         <td>{{ track.name }}</td>
         <td>{{ track.description }}</td>
+        <td><img src="{{ track.imageUrl }}"/></td>
         <td>
             <div class="image-container">
               <app-post *ngFor="let post of postLists"
