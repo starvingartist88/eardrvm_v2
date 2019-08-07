@@ -37,8 +37,10 @@ export class MyFireService {
         }, error => {
             reject(error);
         }, () => {
-            const fileUrl = uploadTask.snapshot.downloadURL;
-            resolve({fileName, fileUrl});
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL=>{
+                const fileUrl = downloadURL;
+                resolve({fileName, fileUrl});
+            })
         });
     });
 }
@@ -71,7 +73,7 @@ export class MyFireService {
         };
 
 
-
+        
         const updates = {};
         updates['/myposts/' + user.uid + "/" + newPersonalPostKey ] = personalPostDetails;
         updates['/allposts/' + allPostsKey] = allPostsDetails;

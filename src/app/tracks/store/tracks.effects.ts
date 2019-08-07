@@ -30,7 +30,8 @@ export class TracksEffects {
               key: key,
               id: track.id,
               name: track.name,
-              description: track.description
+              description: track.description,
+              imageUrl: track.imageUrl
             };
           });
           return (new fromTracks.TracksLoaded({ tracks: tracksData }));
