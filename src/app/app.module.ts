@@ -1,5 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {DemoMaterialModule} from './material-module';
+
 
 import { AngularFireModule } from '@angular/fire';
 
@@ -41,6 +47,10 @@ import { FollowingComponent } from './following/following.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    DemoMaterialModule,
     AuthModule,
     SharedModule,
     ModalModule.forRoot(),
@@ -60,3 +70,5 @@ import { FollowingComponent } from './following/following.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
