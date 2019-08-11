@@ -32,7 +32,8 @@ export class TracksEffects {
               name: track.name,
               description: track.description,
               imageUrl: track.imageUrl,
-              audioUrl: track.audioUrl
+              audioUrl: track.audioUrl,
+              sortNumber: track.sortNumber
             };
           });
           return (new fromTracks.TracksLoaded({ tracks: tracksData }));
@@ -58,6 +59,19 @@ export class TracksEffects {
     map((action: fromTracks.TracksEdited) => action.payload),
     withLatestFrom(this.store.pipe(select(getUser))),
     switchMap(([payload, user]: any) => this.tracksService.update(payload.track, user.uid)
+    .pipe(
+      catchError( error => {
+      return of(new fromTracks.TracksError({ error }));
+    }))
+    )
+  );
+
+  @Effect({ dispatch: false })
+  editSort$ = this.actions$.pipe(
+    ofType(TracksActionTypes.TRACKS_SORT_EDITED),
+    map((action: fromTracks.TracksSortEdited) => action.payload),
+    withLatestFrom(this.store.pipe(select(getUser))),
+    switchMap(([payload, user]: any) => this.tracksService.updateSortNumber(payload.track, user.uid)
     .pipe(
       catchError( error => {
       return of(new fromTracks.TracksError({ error }));

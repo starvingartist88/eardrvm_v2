@@ -7,6 +7,7 @@ export enum TracksActionTypes {
 
   TRACKS_ADDED = '[Tracks] Added',
   TRACKS_EDITED = '[Tracks] Edited',
+  TRACKS_SORT_EDITED = '[Tracks] SortEdited',
   TRACKS_DELETED = '[Tracks] Deleted',
 
   TRACKS_ERROR = '[Tracks] Error'
@@ -33,6 +34,14 @@ export class TracksEdited implements Action {
 
   constructor(public payload: { track: Track }) {}
 }
+
+export class TracksSortEdited implements Action {
+  readonly type = TracksActionTypes.TRACKS_SORT_EDITED;
+
+  constructor(public payload: { track: Track }) {}
+}
+
+
 
 export class TracksDeleted implements Action {
   readonly type = TracksActionTypes.TRACKS_DELETED;

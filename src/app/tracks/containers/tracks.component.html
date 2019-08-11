@@ -8,7 +8,7 @@
     <button mdbBtn color="purple" (click)="onAddTrack()">Upload New Track</button>
 
     <div *ngIf="tracks" class="mt-4 white">
-      <app-tracks-list [tracks]="tracks" (trackEdited)="onTrackEdit($event)" (trackDeleted)="onTrackDelete($event)"></app-tracks-list>
+      <app-tracks-list [tracks]="tracks" (trackEdited)="onTrackEdit($event)" (trackDeleted)="onTrackDelete($event)" (trackEditSortNumber)="editSortNumber($event)"></app-tracks-list>
     </div>
 
     <div *ngIf="isLoading$ | async" class="d-flex justify-content-center align-items-center" style="margin-top: 200px">

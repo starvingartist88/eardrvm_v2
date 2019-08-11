@@ -1,3 +1,4 @@
+import { DemoMaterialModule } from './../material-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
@@ -33,7 +34,8 @@ import { PostComponent } from './post/post.component';
     IconsModule,
     FormsModule,
     ButtonsModule,
-    CardsFreeModule
+    CardsFreeModule,
+    DemoMaterialModule
   ],
   exports: [ProjectsListComponent, ProjectComponent, TracksListComponent],
   providers: [],

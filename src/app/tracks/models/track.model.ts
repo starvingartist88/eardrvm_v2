@@ -5,4 +5,5 @@ export interface Track {
     description?: string;
     imageUrl?: string;
     audioUrl?: string;
+    sortNumber?: any;
 }

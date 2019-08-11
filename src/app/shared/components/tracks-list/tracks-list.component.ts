@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Track } from '../../../tracks/models/track.model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-tracks-list',
@@ -11,10 +12,16 @@ export class TracksListComponent implements OnInit {
   @Input() tracks: Track[];
   @Output() trackDeleted = new EventEmitter<Track>();
   @Output() trackEdited = new EventEmitter<Track>();
+  @Output() trackEditSortNumber = new EventEmitter<Track>();
 
-  constructor() { }
+  @ViewChild('table') table: MatTable<Track>;
+
+  displayedColumns: string[] = ['url', 'name', 'description', 'album', 'action']
+  sortedTracks: any;
+  constructor() {}
 
   ngOnInit() {
+    this.sortedTracks=this.tracks.sort((a, b) => a.sortNumber < b.sortNumber ? -1 : a.sortNumber > b.sortNumber ? 1 : 0)
   }
 
   onEdit(track: Track) {
@@ -29,19 +36,15 @@ export class TracksListComponent implements OnInit {
     return index;
   }
 
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
-  ];
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  dropTable(event: CdkDragDrop<Track[]>) {
+    const prevIndex = this.sortedTracks.findIndex((d) => d === event.item.data);
+    moveItemInArray(this.sortedTracks, prevIndex, event.currentIndex);
+    let i=1;
+    this.sortedTracks.forEach(element => {
+      element['sortNumber']=i++;
+      this.trackEditSortNumber.emit(element);
+    });
+    this.table.renderRows();
   }
 }
 

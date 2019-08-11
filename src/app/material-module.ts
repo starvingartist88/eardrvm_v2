@@ -41,8 +41,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 
-@NgModule({
-  exports: [
+
+  const materialModules = [
     A11yModule,
     CdkStepperModule,
     CdkTableModule,
@@ -86,7 +86,11 @@ import {MatTreeModule} from '@angular/material/tree';
     PortalModule,
     ScrollingModule,
   ]
-})
+  @NgModule({
+    imports: [...materialModules],
+    exports: [...materialModules],
+    providers: []
+  })
 export class DemoMaterialModule {}
 
 
