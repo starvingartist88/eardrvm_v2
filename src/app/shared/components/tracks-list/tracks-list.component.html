@@ -1,7 +1,7 @@
-<div class="z-depth-1" *ngIf="sortedTracks">
-  <table mat-table #table [dataSource]="sortedTracks" [trackBy]="trackByFn" class="table table-striped table-responsive-md btn-table" mdbTable borderless="true"
+<div class="z-depth-1" *ngIf="tracks">
+  <table mat-table #table [dataSource]="tracks" [trackBy]="trackByFn" class="table table-striped table-responsive-md btn-table" mdbTable borderless="true"
   cdkDropList
-  [cdkDropListData]="sortedTracks"
+  [cdkDropListData]="tracks"
   (cdkDropListDropped)="dropTable($event)">
   
   <!--- Note that these columns can be defined in any order.

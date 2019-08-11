@@ -17,11 +17,11 @@ export class TracksListComponent implements OnInit {
   @ViewChild('table') table: MatTable<Track>;
 
   displayedColumns: string[] = ['url', 'name', 'description', 'album', 'action']
-  sortedTracks: any;
+  // sortedTracks: any;
   constructor() {}
 
   ngOnInit() {
-    this.sortedTracks=this.tracks.sort((a, b) => a.sortNumber < b.sortNumber ? -1 : a.sortNumber > b.sortNumber ? 1 : 0)
+    // this.sortedTracks=this.tracks.sort((a, b) => a.sortNumber < b.sortNumber ? -1 : a.sortNumber > b.sortNumber ? 1 : 0)
   }
 
   onEdit(track: Track) {
@@ -37,10 +37,10 @@ export class TracksListComponent implements OnInit {
   }
 
   dropTable(event: CdkDragDrop<Track[]>) {
-    const prevIndex = this.sortedTracks.findIndex((d) => d === event.item.data);
-    moveItemInArray(this.sortedTracks, prevIndex, event.currentIndex);
+    const prevIndex = this.tracks.findIndex((d) => d === event.item.data);
+    moveItemInArray(this.tracks, prevIndex, event.currentIndex);
     let i=1;
-    this.sortedTracks.forEach(element => {
+    this.tracks.forEach(element => {
       element['sortNumber']=i++;
       this.trackEditSortNumber.emit(element);
     });
