@@ -33,11 +33,11 @@ export class TracksService {
   }
   
   get(userId: string) {
-    return this.db.list(`tracks/${userId}`).snapshotChanges();
+    return this.db.list(`tracks/${userId}`).snapshotChanges();;
   }
   
   update(track: Track, userId: string) {
-    return of(this.db.object(`track/${userId}/` + track.key)
+    return of(this.db.object(`tracks/${userId}/` + track.key)
     .update({
       id: track.id,
       name: track.name,
@@ -46,10 +46,7 @@ export class TracksService {
   }
   
   updateSortNumber(track: Track, userId: string) {
-    console.log(track)
-    console.log(track.key)
-    console.log(track.sortNumber)
-    return of(this.db.object(`track/${userId}/` + track.key)
+    return of(this.db.object(`tracks/${userId}/` + track.key)
     .update({
       sortNumber: track.sortNumber
     }));

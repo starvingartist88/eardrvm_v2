@@ -13,38 +13,42 @@ export class TracksListComponent implements OnInit {
   @Output() trackDeleted = new EventEmitter<Track>();
   @Output() trackEdited = new EventEmitter<Track>();
   @Output() trackEditSortNumber = new EventEmitter<Track>();
-
+  
   @ViewChild('table') table: MatTable<Track>;
-
+  
   displayedColumns: string[] = ['url', 'name', 'description', 'album', 'action']
   // sortedTracks: any;
   constructor() {}
-
+  
   ngOnInit() {
-    // this.sortedTracks=this.tracks.sort((a, b) => a.sortNumber < b.sortNumber ? -1 : a.sortNumber > b.sortNumber ? 1 : 0)
+    // this.tracks=this.tracks.sort((a, b) => a.sortNumber < b.sortNumber ? -1 : a.sortNumber > b.sortNumber ? 1 : 0);
   }
-
+  
   onEdit(track: Track) {
     this.trackEdited.emit(track);
   }
-
+  
   onDelete(track: Track) {
     this.trackDeleted.emit(track);
   }
-
+  
   trackByFn(index: any) {
     return index;
   }
-
+  
   dropTable(event: CdkDragDrop<Track[]>) {
     const prevIndex = this.tracks.findIndex((d) => d === event.item.data);
     moveItemInArray(this.tracks, prevIndex, event.currentIndex);
+    this.table.renderRows();
+    
     let i=1;
     this.tracks.forEach(element => {
       element['sortNumber']=i++;
       this.trackEditSortNumber.emit(element);
     });
-    this.table.renderRows();
+    
+    console.log(this.tracks)
+    
   }
 }
 

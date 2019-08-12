@@ -94,7 +94,7 @@ export class TracksComponent implements OnInit, OnDestroy {
   }
   
   editSortNumber(track: Track) {
-    this.store.dispatch(new fromTracks.TracksSortEdited({ track }));
+    this.store.dispatch(new fromTracks.TracksSortEdited({ track: track }));
     
   }
   
